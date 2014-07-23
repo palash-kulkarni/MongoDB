@@ -1,0 +1,60 @@
+﻿ db.createCollection("user")
+{ "ok" : 1 }
+> db.user.insert({_id:"u1",user_id:1,user_name="Palash",assessment:["a1","a2","a3","a4"]})
+2014-07-10T17:22:20.050+0530 SyntaxError: Unexpected token =
+> db.user.insert({_id:"u1",user_id:1,user_name:"Palash",assessment:["a1","a2","a3","a4"]})
+WriteResult({ "nInserted" : 1 })
+> db.user.insert({_id:"u2",user_id:2,user_name:"Raj",assessment:["a1","a2","a3","a4"]})
+WriteResult({ "nInserted" : 1 })
+> db.createCollection("assessment")
+{ "ok" : 1 }
+> db.assessment.insert({_id:"a1",assess_name:"Unix",question:["q1","q2","q3","q4","q5"]})
+WriteResult({ "nInserted" : 1 })
+> db.assessment.insert({_id:"a2",assess_name:"Operating System",question:["q6","q7","q8","q9","q10"]})
+WriteResult({ "nInserted" : 1 })
+> db.createCollection("question");
+{ "ok" : 1 }
+> db.question.insert({_id:"q1",ques_statement:"Which command is used to display the top of t",A:"sort",B:"sh",C:"st",D:"sort -r",Correct:"sort -r"})
+WriteResult({ "nInserted" : 1 })
+> db.question.insert({_id:"q2",ques_statement:"which command is used to sort the lines of da",A:"asd",B:"swefwe",C:"fref",D:"tgrt",Correct:"asd"})
+WriteResult({ "nInserted" : 1 })
+> db.question.insert({_id:"q3",ques_statement:"Which symbol will be used with grep command t",A:"grt",B:"yt",C:"rhtry",D:"uyj",Correct:"grt"})
+WriteResult({ "nInserted" : 1 })
+> db.question.insert({_id:"q4",ques_statement:"Which command is used to copy all files havin",A:"bfg",B:"nty",C:"ok",D:y5t",Correct:"ok"})
+2014-07-10T17:33:16.918+0530 SyntaxError: Unexpected string
+> db.question.insert({_id:"q4",ques_statement:"Which command is used to copy all files havin",A:"bfg",B:"nty",C:"ok",D:"y5t",Correct:"ok"})
+WriteResult({ "nInserted" : 1 })
+> db.question.insert({_id:"q5",ques_statement:"Which command is used to change protection mo",A:"mn",B:"big",C:"ok",D:"po",Correct:"po"})
+WriteResult({ "nInserted" : 1 })
+> db.createCollection("user_answer")
+{ "ok" : 1 }
+> db.user_answer.insert({_id:1,user_id:u1,assessment_id:1,question_id:1,answer:"sort"})
+2014-07-10T17:40:37.915+0530 ReferenceError: u1 is not defined
+> db.user_answer.insert({_id:1,user_id:"u1",assessment_id:1,question_id:1,answer:"sort"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:1,user_id:"u1",assessment_id:1,question_id:2,answer:"asd"})
+WriteResult({
+	"nInserted" : 0,
+	"writeError" : {
+		"code" : 11000,
+		"errmsg" : "insertDocument :: caused by :: 11000 E11000 duplicate key error index: db.user_answer.$_id_  dup key: { : 1.0 }"
+	}
+})
+> db.user_answer.insert({_id:2,user_id:"u1",assessment_id:1,question_id:2,answer:"asd"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:3,user_id:"u1",assessment_id:1,question_id:3,answer:"grt"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:4,user_id:"u1",assessment_id:1,question_id:4,answer:"ok"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:5,user_id:"u1",assessment_id:1,question_id:5,answer:"po"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:6,user_id:"u2",assessment_id:1,question_id:1,answer:"sh"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:7,user_id:"u2",assessment_id:1,question_id:2,answer:"fref"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:8,user_id:"u2",assessment_id:1,question_id:3,answer:"uyj"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:9,user_id:"u2",assessment_id:1,question_id:4,answer:"ok"})
+WriteResult({ "nInserted" : 1 })
+> db.user_answer.insert({_id:10,user_id:"u2",assessment_id:1,question_id:5,answer:"ok"})
+WriteResult({ "nInserted" : 1 })
